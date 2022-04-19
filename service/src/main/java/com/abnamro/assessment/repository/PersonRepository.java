@@ -1,4 +1,4 @@
-package com.abnamro.repository;
+package com.abnamro.assessment.repository;
 
 import java.util.List;
 

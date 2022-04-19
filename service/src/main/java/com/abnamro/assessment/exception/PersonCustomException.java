@@ -1,4 +1,4 @@
-package com.abnamro.exception;
+package com.abnamro.assessment.exception;
 
 public class PersonCustomException extends RuntimeException {
     private String error;

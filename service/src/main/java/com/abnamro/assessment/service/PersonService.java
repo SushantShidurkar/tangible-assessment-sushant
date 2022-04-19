@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 import com.abnamro.assessment.entity.PersonEntity;
 import com.abnamro.assessment.model.Person;
-import com.abnamro.exception.PersonCustomException;
-import com.abnamro.repository.PersonRepository;
+import com.abnamro.assessment.exception.PersonCustomException;
+import com.abnamro.assessment.repository.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 public class PersonService {
     @Autowired
     PersonRepository personRepository;
+    
     List<String> bannedYears = new ArrayList<>();
 
     public void createPerson(Person p) {
@@ -37,6 +38,7 @@ public class PersonService {
         return personRepository.findAll().stream().filter(person->!bannedYears.contains(String.valueOf(person.getBirthDate().getYear())))
         .collect(Collectors.toList());
     }
+
     public void getBannedYears() throws IOException {
         try (InputStream in = getClass().getResourceAsStream("/banned-years");
              BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {

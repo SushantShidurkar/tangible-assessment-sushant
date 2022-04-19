@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan("com.abnamro")
-@EntityScan("com.abnamro.assessment")
 @EnableJpaRepositories(basePackages = "com.abnamro.assessment.repository")
+@EntityScan("com.abnamro.assessment")
 public class ApiApplication {
 
 	public static void main(String[] args) {
