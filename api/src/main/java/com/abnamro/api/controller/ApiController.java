@@ -9,25 +9,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
 public class ApiController{
 
-Logger logger= LoggerFactory.getLogger(RecipeController.class);
-@Autowired
+    Logger logger= LoggerFactory.getLogger(ApiController.class);
+    @Autowired
     private PersonService personService;
 
     @PostMapping("/person")  
-	public ResponseEntity<String> createRecipe(@RequestBody Person person)  
+	public ResponseEntity<String> createPerson(@RequestBody Person person)  
 	{  
 		logger.info("createPerson called.");
-		if(null==person) {
-			recipeService.createRecipe(recipeDTO);  
-			return new ResponseEntity<>(HttpStatus.OK); 
+		if(null== person) {
+			personService.createPerson(person);
+        return new ResponseEntity(HttpStatus.CREATED);
 		}else {
-			logger.error("Id found in create recipe.");
+			logger.error("Error in creation");
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
+	}
+
+    @GetMapping("/allFilteredPersons")
+	public ResponseEntity<List<Person>> getAllPersons(){
+		logger.info("getfiltered persons called.");
+		return new ResponseEntity<>(personService.listFilteredPersons(),HttpStatus.OK);
 	}
 }
