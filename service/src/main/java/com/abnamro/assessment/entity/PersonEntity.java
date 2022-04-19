@@ -23,7 +23,7 @@ public class PersonEntity {
     private Long id;
     @Column
     @NotNull
-    @Size(min=2)
+    @Size(min=2 ,message = "Name must include 2 characters atleast")
     @Pattern(regexp="^$|[a-zA-Z0-9 ]+$", message="Name must not include special characters.")
     private String name;
 
